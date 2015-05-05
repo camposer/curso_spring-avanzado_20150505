@@ -8,10 +8,10 @@ public class Principal {
 		ApplicationContext ctx = 
 				new ClassPathXmlApplicationContext("applicationContext.xml");
 
-		HolaMundo hm1 = ctx.getBean(HolaMundo.class, "holaMundoImpl");
+		HolaMundo hm1 = ctx.getBean("holaMundoImpl", HolaMundo.class);
 		System.out.println(hm1.saludar("Rodolfo"));
 		
-		HolaMundo hm2 = (HolaMundo)ctx.getBean("helloWorldImpl");
-		hm2.saludar("Juan");
+		HolaMundo hm2 = (HolaMundo)ctx.getBean("helloWorld");
+		System.out.println(hm2.saludar("Juan"));
 	}
 }
