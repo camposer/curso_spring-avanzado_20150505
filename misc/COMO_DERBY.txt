@@ -1,0 +1,37 @@
+Cómo configurar derby
+=====================
+
+1. Descargar derby
+	https://db.apache.org/derby/releases/release-10.11.1.1.cgi
+2. Descomprimir
+3. Iniciar el Derby. Ejecutar: 
+	startNetworkServer.bat
+
+----
+
+1. En eclipse abrir la perspectiva "Database development"
+2. Agregar una nueva conexión
+3. Seleccionar como base de datos Derby
+4. Seleccionar el driver Derby Client (no Embedded!!)
+5. Borrar el JAR actual y buscar el derbyclient.jar dentro de DERBY_HOME/lib/derbyclient.jar
+6. En los parámetros de configuración conectarse a:
+	jdbc:derby://localhost:1527/persona;create=true
+	User: user
+	Password: 123456
+	Guardar contraseña!
+7. Probar el siguiente script:
+	CREATE TABLE test(a INT);
+	INSERT INTO test VALUES(1);
+	INSERT INTO test VALUES(1);
+	INSERT INTO test VALUES(1);
+	INSERT INTO test VALUES(1);
+	INSERT INTO test VALUES(1);
+	SELECT * FROM test;
+
+
+
+
+
+
+
+
