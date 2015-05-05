@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -31,6 +33,18 @@ public class Persona implements Serializable {
 	private String nombre;
 
 	public Persona() {
+	}
+
+	public Persona(String nombre, String apellido) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", apellido=" + apellido
+				+ ", fechaNacimiento=" + fechaNacimiento + ", nombre=" + nombre
+				+ "]";
 	}
 
 	public Integer getId() {

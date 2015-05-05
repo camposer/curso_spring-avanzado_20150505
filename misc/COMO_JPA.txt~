@@ -10,7 +10,7 @@ Cómo generar entidades (model) desde las tablas
 5. Seleccionar las tablas desde las cuales se generarán entidades
 6. En configuraciones generales:
 	- Seleccionar como generador de claves: auto
-	- 
+	- Especificar un paquete, por ejemplo: model
 	- Seleccionar Always generate optional JPA annotations...
 7. En configuraciones de los campos cambiar tipos primitivos por objetos, por ejemplo: para id cambiar int por Integer.
 
@@ -29,6 +29,23 @@ Configuración del contexto de persistencia
 ==========================================
 
 1. Abrir el fichero classpath:/META-INF/persistence.xml y en la pestaña (creo) Connections seleccionar Transaction type: "Resource local" y hacer clic en "Populate from connection".
+
+Configuración del contenedor de Servlets
+========================================
+
+1. Descargar Apache Tomcat 7 (versión CORE zip)
+2. Descomprimir
+3. Dentro de la perspectiva JEE ir a la vista de Servers y clic derecho para agregar un nuevo servidor. Seleccionar Apache Tomcat 7 y especificar la carpeta donde hemos descomprimido el servidor.
+4. Clic derecho sobre el proyecto y seleccionar propiedades. Ir a Java Build Path y dentro de Libraries verificar que está disponible el Apache Tomcat Runtime. En caso de que no esté, agregar Library y seleccionar Server Runtime -> Apache Tomcat
+
+
+
+
+
+
+
+
+
 
 
 
