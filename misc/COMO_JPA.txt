@@ -1,0 +1,39 @@
+Cómo generar entidades (model) desde las tablas
+===============================================
+
+1. Ir a la perspectiva JEE
+2. Clic derecho sobre el proyecto y seleccionar Configure -> Convert to JPA project
+	- Seleccionar "Disable Libraries"
+	- Finalizar
+3. Clic derecho sobre el proyecto y seleccionar JPA Tools -> Entities from tables
+4. Seleccionar la conexión de BD
+5. Seleccionar las tablas desde las cuales se generarán entidades
+6. En configuraciones generales seleccionar: Always generate optional JPA annotations...
+7. En configuraciones de los campos cambiar tipos primitivos por objetos, por ejemplo: para id cambiar int por Integer.
+
+Configuración de dependencias
+=============================
+
+1. Clic derecho sobre el proyecto y seleccionar Configure -> Convert to Maven
+2. Agregar al POM la siguiente dependencia:
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>4.3.9.Final</version>
+	</dependency>
+
+Configuración del contexto de persistencia
+==========================================
+
+1. Abrir el fichero classpath:/META-INF/persistence.xml y en la pestaña (creo) Connections seleccionar Local resource y especificar la conexión de derby
+
+
+
+
+
+
+
+
+
+
+
