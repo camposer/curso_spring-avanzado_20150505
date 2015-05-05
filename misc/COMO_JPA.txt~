@@ -24,6 +24,12 @@ Configuración de dependencias
 		<artifactId>hibernate-entitymanager</artifactId>
 		<version>4.3.9.Final</version>
 	</dependency>
+	<dependency>
+		<groupId>org.apache.derby</groupId>
+		<artifactId>derbyclient</artifactId>
+		<version>10.10.1.1</version>
+	</dependency>
+
 
 Configuración del contexto de persistencia
 ==========================================

@@ -43,23 +43,3 @@ Configuración del contenedor de Servlets
 2. Descomprimir
 3. Dentro de la perspectiva JEE ir a la vista de Servers y clic derecho para agregar un nuevo servidor. Seleccionar Apache Tomcat 7 y especificar la carpeta donde hemos descomprimido el servidor.
 4. Clic derecho sobre el proyecto y seleccionar propiedades. Ir a Java Build Path y dentro de Libraries verificar que está disponible el Apache Tomcat Runtime. En caso de que no esté, agregar Library y seleccionar Server Runtime -> Apache Tomcat
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
