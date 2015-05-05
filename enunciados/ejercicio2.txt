@@ -1,0 +1,6 @@
+1.- Crear un advice (tipo around) que deje una traza de log cuando se ejecute cualquier método del DAO de persona.
+	- Debe implementar una clase que gestione las trazas (logger) y otra que implemente el advice.
+	- El logger debe recibir como parámetro la ubicación del log
+	- El logger debe imprimir al menos nombre del método, parámetros y marca de tiempo
+
+2.- Implementar una anotación CustomLog que utilice el CustomLogger desarrollado en 1.

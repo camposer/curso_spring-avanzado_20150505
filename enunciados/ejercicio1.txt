@@ -1,0 +1,26 @@
+Ejercicio1
+==========
+
+0.- Generar el modelo a partir de la BD
+	- Cumplimentar fichero classpath:META-INF/persistence.xml
+
+1.- Implementar los DAO y Servicios correspondientes a los modelos: persona y ordenador.
+	- Agregar configuraciones de acceso a datos (entityManager, entityManagerFactory, transactionManager)
+	- Agregar implementación genérica de DAO. Debe inyectar el entityManager y agregar la anotación @PersistenceContext
+	- Implementar PersonaDaoImpl (con su interfaz correspondiente)
+	- Implementar PersonaServiceImpl (con su interfaz correspondiente)
+
+2.- Implementar el CRUD+ para Persona
+	2.1.- Implementar la lista (+) de personas (acción: /persona/index.do)
+	2.2.- Implementar el agregar (C) de personas
+	2.3.- Implementar el eliminar (D) de personas. Si tiene ordenadores asociados, estos deben borrarse previamente de forma automática.
+	2.4.- Implementar el mostrar (R) de personas
+	2.5.- Implementar el modificar (U) de personas
+
+3.- Implementar el CRUD+ para Ordenador. Seguir el mismo orden de implementación aplicado en CRUD+ de Persona.
+
+4.- Implementar API REST para Persona y Ordenador
+
+
+
+

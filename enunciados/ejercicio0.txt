@@ -1,0 +1,29 @@
+1.- Crear una clase Calculadora parecida a la del ejercicio (7 de curso_in_java) que ofrezca los métodos: 
+	- public float sumar(float, float);
+	- public float restar(float, float);
+	- public float multiplicar(float, float);
+	- public float dividir(float, float);
+NOTA: Los métodos no son estáticos!
+
+Debe también crear una pequeña GUI por consola que pida la operación a ejecutar, los dos operandos e imprimir el resultado.
+
+La instancia de Calculadora debe ser creada con Spring.
+
+Ejemplo de GUI:
+	1. Sumar
+	2. Restar
+	3. Multiplicar
+	4. Dividir
+	5. Salir
+	? 1
+
+	a? 1
+	b? 1
+	a + b = 2
+
+2.- Refactorizar el código para que funcione con anotaciones
+
+
+
+
+
