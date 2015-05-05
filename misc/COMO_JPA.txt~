@@ -10,7 +10,7 @@ Cómo generar entidades (model) desde las tablas
 5. Seleccionar las tablas desde las cuales se generarán entidades
 6. En configuraciones generales:
 	- Seleccionar como generador de claves: auto
-	- Especificar un paquete, por ejemplo: model
+	- 
 	- Seleccionar Always generate optional JPA annotations...
 7. En configuraciones de los campos cambiar tipos primitivos por objetos, por ejemplo: para id cambiar int por Integer.
 
