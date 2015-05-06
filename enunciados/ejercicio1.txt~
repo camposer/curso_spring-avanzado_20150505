@@ -20,7 +20,6 @@ Ejercicio1
 NOTA: Para ejecutar: http://localhost:8080/persona/persona/index.do
 
 3.- Implementar el CRUD+ para Ordenador. Seguir el mismo orden de implementación aplicado en CRUD+ de Persona.
-- BD
 - Modelo
 - DAO
 - Servicio

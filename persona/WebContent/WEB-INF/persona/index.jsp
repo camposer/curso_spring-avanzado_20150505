@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
+<%@ include file="../comun.jsp" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,26 +38,28 @@
 </head>
 <body>
 	<h1>Personas</h1>
-	<table id="form-persona" class="tabla-centrada">
-		<tr>
-			<td>Nombre</td>
-			<td><input type="text" name="nombre"></td>
-		</tr>
-		<tr>
-			<td>Apellido</td>
-			<td><input type="text" name="apellido"></td>
-		</tr>
-		<tr>
-			<td>Fecha de Nacimiento</td>
-			<td><input type="text" name="fechaNacimiento"></td>
-		</tr>
-		<tr>
-			<td colspan="2">		
-				<input type="button" value="Modificar">
-				<input type="button" value="Agregar">
-			</td>
-		</tr>
-	</table>
+	<form action="${contextPath}/persona/agregar.do" method="post">
+		<table id="form-persona" class="tabla-centrada">
+			<tr>
+				<td>Nombre</td>
+				<td><input type="text" name="nombre"></td>
+			</tr>
+			<tr>
+				<td>Apellido</td>
+				<td><input type="text" name="apellido"></td>
+			</tr>
+			<tr>
+				<td>Fecha de Nacimiento</td>
+				<td><input type="text" name="fechaNacimiento"></td>
+			</tr>
+			<tr>
+				<td colspan="2">		
+					<input type="button" value="Modificar">
+					<input type="submit" value="Agregar">
+				</td>
+			</tr>
+		</table>
+	</form>
 	<br>
 	<table id="tabla-persona" class="tabla-centrada">
 		<tr>
@@ -75,7 +77,7 @@
 				<td>${p.apellido}</td>
 				<td>${p.fechaNacimiento}</td>
 				<td><a href="#">mostrar</a></td>
-				<td><a href="#">eliminar</a></td>
+				<td><a href="${contextPath}/persona/eliminar.do?id=${p.id}">eliminar</a></td>
 			</tr>	
 		</c:forEach>
 	</table>
