@@ -6,10 +6,12 @@ import model.Persona;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.PersonaDao;
 
 @Service
+@Transactional // No sólo maneja transacciones, sino la conexión
 public class PersonaServiceImpl implements PersonaService {
 	@Autowired
 	private PersonaDao personaDao;
