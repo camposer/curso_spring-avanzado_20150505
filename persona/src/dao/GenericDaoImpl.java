@@ -8,9 +8,9 @@ import javax.persistence.PersistenceContext;
 
 
 public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
-	private Class<E> clase;
+	protected Class<E> clase;
 	@PersistenceContext // Spring manejará los entity managers
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	public GenericDaoImpl() {
@@ -42,7 +42,7 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<E> obtenerTodos() {
-		return entityManager.createNamedQuery(clase.getSimpleName() + ".findAll").getResultList();
+		return entityManager.createQuery("from " + clase.getSimpleName() + " e").getResultList();
 	}
 
 }
