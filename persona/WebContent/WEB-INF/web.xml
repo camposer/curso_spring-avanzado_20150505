@@ -16,7 +16,6 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
-<!-- 
 	<listener>
 	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -40,5 +39,4 @@
 	    <filter-name>encoding-filter</filter-name>
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
--->
 </web-app>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,30 +68,16 @@
 			<th>Mostrar</th>
 			<th>Eliminar</th>
 		</tr>
-		<tr>
-			<td>1</td>
-			<td>XXX</td>
-			<td>YYY</td>
-			<td>ZZZ</td>
-			<td><a href="#">mostrar</a></td>
-			<td><a href="#">eliminar</a></td>
-		</tr>	
-		<tr>
-			<td>1</td>
-			<td>XXX</td>
-			<td>YYY</td>
-			<td>ZZZ</td>
-			<td><a href="#">mostrar</a></td>
-			<td><a href="#">eliminar</a></td>
-		</tr>	
-		<tr>
-			<td>1</td>
-			<td>XXX</td>
-			<td>YYY</td>
-			<td>ZZZ</td>
-			<td><a href="#">mostrar</a></td>
-			<td><a href="#">eliminar</a></td>
-		</tr>	
+		<c:forEach var="p" items="${personas}">
+			<tr>
+				<td>${p.id}</td>
+				<td>${p.nombre}</td>
+				<td>${p.apellido}</td>
+				<td>${p.fechaNacimiento}</td>
+				<td><a href="#">mostrar</a></td>
+				<td><a href="#">eliminar</a></td>
+			</tr>	
+		</c:forEach>
 	</table>
 	
 	
