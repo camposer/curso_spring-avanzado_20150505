@@ -34,28 +34,37 @@
 		#tabla-persona tr:nth-child(even) td {
 			background-color: darkgray;
 		}
+		.errores {
+			background-color: red;
+			color: white;
+		}
 	</style>
 </head>
 <body>
 	<h1>Personas</h1>
-	<form action="${contextPath}/persona/agregar.do" method="post">
+	<div class="errores tabla-centrada">
+		<c:forEach var="e" items="${errores}">
+			${e}<br>
+		</c:forEach>
+	</div>
+	<form action="${contextPath}/persona/guardar.do" method="post">
+		<input type="hidden" name="personaId" value="${persona.id}">
 		<table id="form-persona" class="tabla-centrada">
 			<tr>
 				<td>Nombre</td>
-				<td><input type="text" name="nombre"></td>
+				<td><input type="text" name="nombre" value="${persona.nombre}"></td>
 			</tr>
 			<tr>
 				<td>Apellido</td>
-				<td><input type="text" name="apellido"></td>
+				<td><input type="text" name="apellido" value="${persona.apellido}"></td>
 			</tr>
 			<tr>
 				<td>Fecha de Nacimiento</td>
-				<td><input type="text" name="fechaNacimiento"></td>
+				<td><input type="text" name="fechaNacimiento" value="${persona.fechaNacimiento}"></td>
 			</tr>
 			<tr>
 				<td colspan="2">		
-					<input type="button" value="Modificar">
-					<input type="submit" value="Agregar">
+					<input type="submit" value="Guardar">
 				</td>
 			</tr>
 		</table>
@@ -76,7 +85,7 @@
 				<td>${p.nombre}</td>
 				<td>${p.apellido}</td>
 				<td>${p.fechaNacimiento}</td>
-				<td><a href="#">mostrar</a></td>
+				<td><a href="${contextPath}/persona/mostrar.do?id=${p.id}">mostrar</a></td>
 				<td><a href="${contextPath}/persona/eliminar.do?id=${p.id}">eliminar</a></td>
 			</tr>	
 		</c:forEach>

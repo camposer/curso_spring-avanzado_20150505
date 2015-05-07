@@ -2,6 +2,8 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Persona;
 
@@ -30,30 +32,46 @@ public class PersonaController {
 		model.addAttribute("personas", personaService.obtenerPersonas());
 	}
 
-	@RequestMapping(value = "agregar", method = RequestMethod.POST)
-	public String agregar(@RequestParam String nombre,
+	@RequestMapping(value = "guardar", method = RequestMethod.POST)
+	public String guardar(@RequestParam String nombre,
+			@RequestParam(required=false) Integer personaId,
 			@RequestParam String apellido,
-			@RequestParam("fechaNacimiento") String fnac,
+			@RequestParam(value="fechaNacimiento", required=false) String fnac,
 			Model model) {
 		
+		List<String> errores = new ArrayList<String>();
+		
+		// TODO Incluir validaciones de nombre y apellido
 		Persona p = new Persona(nombre, apellido);
-		try {
-			p.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fnac));
-		} catch (ParseException e) {
-			e.printStackTrace();
+		if (fnac != null && !fnac.trim().equals("")) {
+			try {
+				p.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(fnac));
+			} catch (ParseException e) {
+				errores.add("Fecha inválida");
+			}
 		}
 		
-		try {
-			personaService.agregarPersona(p);
-
-			return "redirect:/persona/index.do"; // => response.sendRedirect("/persona/persona/index.do");
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (errores.size() == 0) {
+			try {
+				if (personaId != null) {
+					p.setId(personaId);
+					personaService.modificarPersona(p);
+				} else
+					personaService.agregarPersona(p);
+			} catch (Exception e) {
+				e.printStackTrace();
+				errores.add("Error al guardar la Persona en BD");
+			}
+		}
 		
-			// TODO Agregar manejo de errores
+		if (errores.size() > 0) {
+			model.addAttribute("persona", p);
+			model.addAttribute("errores", errores);
 			init(model);
 			return "forward:/WEB-INF/persona/index.jsp"; // => getServletContext().getRequestDispatcher("/WEB-INF/persona/index.jsp").forward(request, response);
-		}
+		} else
+			return "redirect:/persona/index.do"; // => response.sendRedirect("/persona/persona/index.do");
+			
 	}
 	
 	@RequestMapping(value = "eliminar", method = RequestMethod.GET)
@@ -71,6 +89,19 @@ public class PersonaController {
 		}
 	}
 	
+	@RequestMapping(value = "mostrar", method = RequestMethod.GET)
+	public String mostrar(@RequestParam Integer id, Model model) {
+		try {
+			Persona p = personaService.obtenerPersona(id);
+			model.addAttribute("persona", p);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO Agregar manejo de errores
+		}
+
+		init(model);
+		return "forward:/WEB-INF/persona/index.jsp";
+	}
 }
 
 
