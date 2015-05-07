@@ -3,6 +3,7 @@
 	<persistence-unit name="persona" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>model.Persona</class>
+		<class>model.Ordenador</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/persona;create=true"/>
 			<property name="javax.persistence.jdbc.user" value="user"/>

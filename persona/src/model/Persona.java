@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -32,19 +33,21 @@ public class Persona implements Serializable {
 	@Column(nullable=false, length=50)
 	private String nombre;
 
+	//bi-directional many-to-one association to Ordenador
+	@OneToMany(mappedBy="persona")
+	private List<Ordenador> ordenadores;
+
 	public Persona() {
 	}
-
-	public Persona(String nombre, String apellido) {
-		this.nombre = nombre;
+	
+	public Persona(String apellido, String nombre) {
+		super();
 		this.apellido = apellido;
+		this.nombre = nombre;
 	}
 
-	@Override
-	public String toString() {
-		return "Persona [id=" + id + ", apellido=" + apellido
-				+ ", fechaNacimiento=" + fechaNacimiento + ", nombre=" + nombre
-				+ "]";
+	public Persona(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getId() {
@@ -77,6 +80,33 @@ public class Persona implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public List<Ordenador> getOrdenadores() {
+		return this.ordenadores;
+	}
+
+	public void setOrdenadores(List<Ordenador> ordenadores) {
+		this.ordenadores = ordenadores;
+	}
+	
+	@Transient
+	public String getNombreCompleto() {
+		return this.nombre + " " + this.apellido;
+	}
+
+	public Ordenador addOrdenadore(Ordenador ordenadore) {
+		getOrdenadores().add(ordenadore);
+		ordenadore.setPersona(this);
+
+		return ordenadore;
+	}
+
+	public Ordenador removeOrdenadore(Ordenador ordenadore) {
+		getOrdenadores().remove(ordenadore);
+		ordenadore.setPersona(null);
+
+		return ordenadore;
 	}
 
 }
