@@ -6,6 +6,7 @@ import java.util.List;
 import model.Ordenador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,14 +18,14 @@ import rest.response.OrdenadorResponse;
 import service.OrdenadorService;
 
 @RestController
-@RequestMapping("/api/ordenador/*")
+@RequestMapping("/api/ordenadores")
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class OrdenadorRest {
 	@Autowired
 	private OrdenadorService ordenadorService;
 	
 	/**
-	 * GET http://localhost:8080/persona/api/ordenador/.do
+	 * GET http://localhost:8080/persona/api/ordenadores.do
 	 */
 	@RequestMapping(value="", produces="application/json", method=RequestMethod.GET)
 	public @ResponseBody JsonResponse obtenerTodos() {
@@ -39,17 +40,17 @@ public class OrdenadorRest {
 	}
 	
 	/**
-	 * GET http://localhost:8080/persona/api/ordenador/1.do
+	 * GET http://localhost:8080/persona/api/ordenadores/1.do
 	 */
-//	@RequestMapping(value="{id}", produces="application/json", params="id", method=RequestMethod.GET)
-//	public @ResponseBody JsonResponse obtener(@PathVariable Integer id) {
-//		// TODO Incluidar validaciones
-//		return new JsonResponse(JsonResponse.SUCCESS, 
-//				OrdenadorResponse.build(ordenadorService.obtenerOrdenador(id)));
-//	}
+	@RequestMapping(value="/{id}", produces="application/json", method=RequestMethod.GET)
+	public @ResponseBody JsonResponse obtener(@PathVariable Integer id) {
+		// TODO Incluidar validaciones
+		return new JsonResponse(JsonResponse.SUCCESS, 
+				OrdenadorResponse.build(ordenadorService.obtenerOrdenador(id)));
+	}
 
 	/**
-	 * POST http://localhost:8080/persona/api/ordenador/.do
+	 * POST http://localhost:8080/persona/api/ordenadores.do
 	 * Header: Content-type: application/json
 	 * {
 	 * 	"nombre": "tres",
