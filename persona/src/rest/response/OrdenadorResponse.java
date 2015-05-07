@@ -48,12 +48,14 @@ public class OrdenadorResponse implements Serializable {
 	}
 	
 	public static OrdenadorResponse build(Ordenador ordenador) {
-		OrdenadorResponse response = new OrdenadorResponse();
-		response.setId(ordenador.getId());
-		response.setNombre(ordenador.getNombre());
-		response.setSerial(ordenador.getSerial());
-		response.setPersona(PersonaResponse.build(ordenador.getPersona()));
-		
+		OrdenadorResponse response = null;
+		if (ordenador != null) {
+			response = new OrdenadorResponse();
+			response.setId(ordenador.getId());
+			response.setNombre(ordenador.getNombre());
+			response.setSerial(ordenador.getSerial());
+			response.setPersona(PersonaResponse.build(ordenador.getPersona()));
+		}
 		return response;
 	}
 

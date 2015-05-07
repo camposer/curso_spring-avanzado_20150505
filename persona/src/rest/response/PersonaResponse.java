@@ -60,11 +60,14 @@ public class PersonaResponse implements Serializable {
 	}
 
 	public static PersonaResponse build(Persona persona) {
-		PersonaResponse response = new PersonaResponse();
-		response.setId(persona.getId());
-		response.setNombre(persona.getNombre());
-		response.setApellido(persona.getApellido());
-		response.setFechaNacimiento(persona.getFechaNacimiento());
+		PersonaResponse response = null;
+		if (persona != null) { 
+			response = new PersonaResponse();
+			response.setId(persona.getId());
+			response.setNombre(persona.getNombre());
+			response.setApellido(persona.getApellido());
+			response.setFechaNacimiento(persona.getFechaNacimiento());
+		}
 		return response;
 	}
 	

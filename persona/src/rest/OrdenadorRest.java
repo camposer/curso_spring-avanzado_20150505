@@ -26,6 +26,7 @@ public class OrdenadorRest {
 	
 	/**
 	 * GET http://localhost:8080/persona/api/ordenadores.do
+	 * Header: Accept: application/json
 	 */
 	@RequestMapping(value="", produces="application/json", method=RequestMethod.GET)
 	public @ResponseBody JsonResponse obtenerTodos() {
@@ -41,6 +42,7 @@ public class OrdenadorRest {
 	
 	/**
 	 * GET http://localhost:8080/persona/api/ordenadores/1.do
+	 * Header: Accept: application/json
 	 */
 	@RequestMapping(value="/{id}", produces="application/json", method=RequestMethod.GET)
 	public @ResponseBody JsonResponse obtener(@PathVariable Integer id) {
@@ -51,6 +53,7 @@ public class OrdenadorRest {
 
 	/**
 	 * POST http://localhost:8080/persona/api/ordenadores.do
+	 * Header: Accept: application/json
 	 * Header: Content-type: application/json
 	 * {
 	 * 	"nombre": "tres",
@@ -59,8 +62,6 @@ public class OrdenadorRest {
 	 * 		"id": 1
 	 * 	}
 	 * }
-	 * @param ordenador
-	 * @return
 	 */
 	@RequestMapping(value="",
 			consumes="application/json",
@@ -69,6 +70,59 @@ public class OrdenadorRest {
 	public @ResponseBody JsonResponse agregar(@RequestBody Ordenador ordenador) {
 		try {
 			ordenadorService.agregarOrdenador(ordenador);
+			// TODO Incluir validaciones
+			return new JsonResponse(JsonResponse.SUCCESS, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO Incluir validaciones
+			return new JsonResponse(JsonResponse.ERROR, "Error!!!");
+		}
+		
+	}
+
+	/**
+	 * PUT http://localhost:8080/persona/api/ordenadores/1.do
+	 * Header: Accept: application/json
+	 * Header: Content-type: application/json
+	 * {
+	 * 	"nombre": "tres",
+	 * 	"serial": "123",
+	 * 	"persona": {
+	 * 		"id": 1
+	 * 	}
+	 * }
+	 */
+	@RequestMapping(value="/{id}",
+			consumes="application/json",
+			produces="application/json", 
+			method=RequestMethod.PUT)
+	public @ResponseBody JsonResponse modificar(
+			@PathVariable Integer id,
+			@RequestBody Ordenador ordenador) {
+		try {
+			ordenador.setId(id);
+			ordenadorService.modificarOrdenador(ordenador);
+			// TODO Incluir validaciones
+			return new JsonResponse(JsonResponse.SUCCESS, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO Incluir validaciones
+			return new JsonResponse(JsonResponse.ERROR, "Error!!!");
+		}
+		
+	}
+
+	/**
+	 * DELETE http://localhost:8080/persona/api/ordenadores/1.do
+	 * Header: Accept: application/json
+	 */
+	@RequestMapping(value="/{id}",
+			produces="application/json", 
+			method=RequestMethod.DELETE)
+	public @ResponseBody JsonResponse eliminar(
+			@PathVariable Integer id) {
+		try {
+			ordenadorService.eliminarOrdenador(id);
 			// TODO Incluir validaciones
 			return new JsonResponse(JsonResponse.SUCCESS, null);
 		} catch (Exception e) {
