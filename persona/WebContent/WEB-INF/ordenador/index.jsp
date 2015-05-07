@@ -41,11 +41,11 @@
 	</style>
 </head>
 <body>
-	<h1>Personas</h1>
-	<div class="errores tabla-centrada">
-Aquí deben ir los errores!!!
-	</div>
+	<h1>Ordenadores</h1>
+	
 	<form:form commandName="ordenadorForm" method="post" action="${contextPath}/ordenador/guardar.do">
+		<form:errors path="*" cssClass="errores tabla-centrada"/>
+		
 		<form:hidden path="id"/>
 		<table id="form-persona" class="tabla-centrada">
 			<tr>
