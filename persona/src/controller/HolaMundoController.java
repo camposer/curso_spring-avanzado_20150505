@@ -25,7 +25,7 @@ public class HolaMundoController {
 	
 	@RequestMapping("/holaMundo2")
 	public String holaMundo2() {
-		return "/WEB-INF/holaMundo.jsp";
+		return "/WEB-INF/jsp/holaMundo.jsp";
 	}
 
 	// http://localhost:8080/persona/holaMundo3.do?nombre=Pedro
@@ -34,18 +34,18 @@ public class HolaMundoController {
 		String nombre = request.getParameter("nombre");
 		model.addAttribute("nombre", nombre);
 		
-		return "/WEB-INF/holaMundo.jsp";
+		return "/WEB-INF/jsp/holaMundo.jsp";
 	}
 
 	@RequestMapping("/holaMundo4")
 	public ModelAndView holaMundo4(@RequestParam String nombre) {
-		return new ModelAndView("/WEB-INF/holaMundo.jsp", "nombre", nombre);
+		return new ModelAndView("/WEB-INF/jsp/holaMundo.jsp", "nombre", nombre);
 	}
 
 	@RequestMapping("/holaMundo5")
 	public String holaMundo5(Persona persona, Model model) {
 		model.addAttribute("nombre", persona.getNombre());
-		return "/WEB-INF/holaMundo.jsp";
+		return "/WEB-INF/jsp/holaMundo.jsp";
 	}
 
 }

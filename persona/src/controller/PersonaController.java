@@ -25,7 +25,7 @@ public class PersonaController {
 	@RequestMapping("index")
 	public String index(Model model) {
 		init(model);
-		return "/WEB-INF/persona/index.jsp";
+		return "/WEB-INF/jsp/persona/index.jsp";
 	}
 	
 	private void init(Model model) {
@@ -68,7 +68,7 @@ public class PersonaController {
 			model.addAttribute("persona", p);
 			model.addAttribute("errores", errores);
 			init(model);
-			return "forward:/WEB-INF/persona/index.jsp"; // => getServletContext().getRequestDispatcher("/WEB-INF/persona/index.jsp").forward(request, response);
+			return "forward:/WEB-INF/jsp/persona/index.jsp"; // => getServletContext().getRequestDispatcher("/WEB-INF/persona/index.jsp").forward(request, response);
 		} else
 			return "redirect:/persona/index.do"; // => response.sendRedirect("/persona/persona/index.do");
 			
@@ -85,7 +85,7 @@ public class PersonaController {
 		
 			// TODO Agregar manejo de errores
 			init(model);
-			return "forward:/WEB-INF/persona/index.jsp";
+			return "forward:/WEB-INF/jsp/persona/index.jsp";
 		}
 	}
 	
@@ -100,7 +100,7 @@ public class PersonaController {
 		}
 
 		init(model);
-		return "forward:/WEB-INF/persona/index.jsp";
+		return "forward:/WEB-INF/jsp/persona/index.jsp";
 	}
 }
 

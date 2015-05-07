@@ -37,14 +37,14 @@ public class OrdenadorController {
 	}
 	
 	@ModelAttribute
-	public OrdenadorForm getOrdenadorForm() {
+	public OrdenadorForm ordenadorForm() {
 		return new OrdenadorForm();
 	}
 
 	@RequestMapping("index")
 	public String index(Model model) {
 		init(model);
-		return "/WEB-INF/ordenador/index.jsp";
+		return "/WEB-INF/jsp/ordenador/index.jsp";
 	}
 
 	private void init(Model model) {
@@ -54,8 +54,8 @@ public class OrdenadorController {
 
 	@RequestMapping(value = "guardar", method = RequestMethod.POST)
 	public String guardar(
-			@ModelAttribute @Valid OrdenadorForm ordenadorForm,
 			Model model,
+			@Valid @ModelAttribute OrdenadorForm ordenadorForm,
 			BindingResult result) {
 		
 		if (!result.hasErrors()) {
@@ -77,7 +77,7 @@ public class OrdenadorController {
 			return "redirect:/ordenador/index.do"; 
 		} else {
 			init(model);
-			return "forward:/WEB-INF/ordenador/index.jsp"; 
+			return "forward:/WEB-INF/jsp/ordenador/index.jsp"; 
 		}
 	}
 
@@ -92,7 +92,7 @@ public class OrdenadorController {
 
 			// TODO Agregar manejo de errores
 			init(model);
-			return "forward:/WEB-INF/ordenador/index.jsp";
+			return "forward:/WEB-INF/jsp/ordenador/index.jsp";
 		}
 	}
 
@@ -111,6 +111,6 @@ public class OrdenadorController {
 		}
 
 		init(model);
-		return "forward:/WEB-INF/ordenador/index.jsp";
+		return "forward:/WEB-INF/jsp/ordenador/index.jsp";
 	}
 }

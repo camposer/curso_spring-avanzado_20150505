@@ -14,24 +14,24 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-		#form-persona tr:last-child td {
+		#form-ordenador tr:last-child td {
 			text-align: center;
 		}
-		#tabla-persona td:nth-child(4),
-		#tabla-persona td:nth-child(5),
-		#tabla-persona td:nth-child(6) {
+		#tabla-ordenador td:nth-child(4),
+		#tabla-ordenador td:nth-child(5),
+		#tabla-ordenador td:nth-child(6) {
 			text-align: center;
 		}
-		#tabla-persona a {
+		#tabla-ordenador a {
 			color: black;
 		}
-		#tabla-persona th {
+		#tabla-ordenador th {
 			background-color: gray;
 		}
-		#tabla-persona tr:nth-child(odd) td {
+		#tabla-ordenador tr:nth-child(odd) td {
 			background-color: lightgray;
 		}
-		#tabla-persona tr:nth-child(even) td {
+		#tabla-ordenador tr:nth-child(even) td {
 			background-color: darkgray;
 		}
 		.errores {
@@ -44,10 +44,12 @@
 	<h1>Ordenadores</h1>
 	
 	<form:form commandName="ordenadorForm" method="post" action="${contextPath}/ordenador/guardar.do">
-		<form:errors path="*" cssClass="errores tabla-centrada"/>
+		<div class="tabla-centrada">
+			<form:errors path="*" cssClass="errores"/>
+		</div>
 		
 		<form:hidden path="id"/>
-		<table id="form-persona" class="tabla-centrada">
+		<table id="form-ordenador" class="tabla-centrada">
 			<tr>
 				<td>Nombre</td>
 				<td><form:input path="nombre"/></td>
