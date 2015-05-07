@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ordenadores</title>
+	<style>
+		h1 {
+			text-align: center;
+		}
+		.tabla-centrada {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#form-persona tr:last-child td {
+			text-align: center;
+		}
+		#tabla-persona td:nth-child(4),
+		#tabla-persona td:nth-child(5),
+		#tabla-persona td:nth-child(6) {
+			text-align: center;
+		}
+		#tabla-persona a {
+			color: black;
+		}
+		#tabla-persona th {
+			background-color: gray;
+		}
+		#tabla-persona tr:nth-child(odd) td {
+			background-color: lightgray;
+		}
+		#tabla-persona tr:nth-child(even) td {
+			background-color: darkgray;
+		}
+		.errores {
+			background-color: red;
+			color: white;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+	<script type="text/javascript">
+		const BASE_URL = "api/ordenadores";
+	
+		var imprimirTabla = function() {
+			var url = BASE_URL + ".do";
+			var settings = {
+				type: 'get',
+				dataType: 'json' // Lo que espero recibir
+			};
+			var ajax = $.ajax(url, settings);
+			ajax.done(function(respuesta) {
+				var html ="";
+				var ordenadores = respuesta.result;
+				// TODO Manejar errores
+				for (var i in ordenadores) {
+					var o = ordenadores[i];
+					var nombreCompleto = o.persona.nombre + " " +
+						o.persona.apellido;
+					
+					html +="<tr>";
+					html += "<td>" + o.id + "</td>";
+					html += "<td>" + o.nombre + "</td>";
+					html += "<td>" + o.serial + "</td>";
+					html += "<td>" + nombreCompleto + "</td>";
+					html += "<td><a href='#'>mostrar</a></td>";
+					html += "<td><a href='#' onclick='eliminar(" + o.id + ")'>eliminar</a></td>";
+					html += "</tr>";
+				}
+				
+				$("#tabla-ordenador tbody").html(html);
+			});
+		};
+		
+		var eliminar = function(id) {
+			var url = BASE_URL + "/" + id + ".do";
+			$.ajax(url, {
+				type: 'delete'
+			}).done(function() {
+				imprimirTabla();
+			});
+		};
+		
+		var guardar = function() {
+			var o = {
+				nombre: $("#nombre").val(),
+				serial: $("#serial").val(),
+				persona: {
+					id: $("#personaId").val()
+				}
+			};
+			
+			var url = BASE_URL + ".do";
+			$.ajax(url, {
+				type: "post",
+				data: JSON.stringify(o),
+				contentType: "application/json",
+				dataType: "json"
+			}).done(function(respuesta) {
+				imprimirTabla();
+			});
+		};
+		
+		$(document).ready(function() {
+			imprimirTabla();
+			$("#guardar").click(guardar);
+		});
+	
+	</script>
+</head>
+<body>
+	<h1>Ordenadores</h1>
+	
+	<input type="hidden" id="id">
+	<table id="form-persona" class="tabla-centrada">
+		<tr>
+			<td>Nombre</td>
+			<td><input type="text" id="nombre"></td>
+		</tr>
+		<tr>
+			<td>Serial</td>
+			<td><input type="text" id="serial"></td>
+		</tr>
+		<tr>
+			<td>Dueño</td>
+			<td><input type="text" id="personaId"></td>
+		</tr>
+		<tr>
+			<td colspan="2">		
+				<input type="button" value="Guardar" id="guardar">
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table id="tabla-ordenador" class="tabla-centrada">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Serial</th>
+				<th>Dueño</th>
+				<th>Mostrar</th>
+				<th>Eliminar</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	
+	
+</body>
+</html>
