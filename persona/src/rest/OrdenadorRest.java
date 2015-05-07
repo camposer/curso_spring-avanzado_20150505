@@ -19,7 +19,6 @@ import service.OrdenadorService;
 
 @RestController
 @RequestMapping("/api/ordenadores")
-@SuppressWarnings({ "unchecked", "rawtypes" })
 public class OrdenadorRest {
 	@Autowired
 	private OrdenadorService ordenadorService;
@@ -37,7 +36,7 @@ public class OrdenadorRest {
 			resultado.add(OrdenadorResponse.build(o));
 		
 		// TODO Incluir validaciones
-		return new JsonResponse(JsonResponse.SUCCESS, resultado);
+		return JsonResponse.success(resultado);
 	}
 	
 	/**
@@ -47,8 +46,8 @@ public class OrdenadorRest {
 	@RequestMapping(value="/{id}", produces="application/json", method=RequestMethod.GET)
 	public @ResponseBody JsonResponse obtener(@PathVariable Integer id) {
 		// TODO Incluidar validaciones
-		return new JsonResponse(JsonResponse.SUCCESS, 
-				OrdenadorResponse.build(ordenadorService.obtenerOrdenador(id)));
+		return JsonResponse.success(OrdenadorResponse
+				.build(ordenadorService.obtenerOrdenador(id)));
 	}
 
 	/**
@@ -71,11 +70,11 @@ public class OrdenadorRest {
 		try {
 			ordenadorService.agregarOrdenador(ordenador);
 			// TODO Incluir validaciones
-			return new JsonResponse(JsonResponse.SUCCESS, null);
+			return JsonResponse.success(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Incluir validaciones
-			return new JsonResponse(JsonResponse.ERROR, "Error!!!");
+			return JsonResponse.error(e.getMessage());
 		}
 		
 	}
@@ -103,11 +102,11 @@ public class OrdenadorRest {
 			ordenador.setId(id);
 			ordenadorService.modificarOrdenador(ordenador);
 			// TODO Incluir validaciones
-			return new JsonResponse(JsonResponse.SUCCESS, null);
+			return JsonResponse.success(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Incluir validaciones
-			return new JsonResponse(JsonResponse.ERROR, "Error!!!");
+			return JsonResponse.error(e.getMessage());
 		}
 		
 	}
@@ -124,11 +123,11 @@ public class OrdenadorRest {
 		try {
 			ordenadorService.eliminarOrdenador(id);
 			// TODO Incluir validaciones
-			return new JsonResponse(JsonResponse.SUCCESS, null);
+			return JsonResponse.success(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Incluir validaciones
-			return new JsonResponse(JsonResponse.ERROR, "Error!!!");
+			return JsonResponse.error(e.getMessage());
 		}
 		
 	}

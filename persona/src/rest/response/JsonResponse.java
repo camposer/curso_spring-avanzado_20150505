@@ -1,31 +1,21 @@
 package rest.response;
 
-public class JsonResponse<E> {
-	public static final String SUCCESS = "success";
-	public static final String ERROR = "error";
-	private E result;
+public class JsonResponse {
+	private static final String SUCCESS = "success";
+	private static final String ERROR = "error";
+	private Object result;
 	private String status;
 	private String error;
 	
-	public JsonResponse() {
+	private JsonResponse() {
 		
 	}
 	
-	public JsonResponse(String status, E result) {
-		this.result = result;
-		this.status = status;
-	}
-
-	public JsonResponse(String status, String error) {
-		this.status = status;
-		this.error = error;
-	}
-
-	public E getResult() {
+	public Object getResult() {
 		return result;
 	}
 
-	public void setResult(E result) {
+	public void setResult(Object result) {
 		this.result = result;
 	}
 
@@ -43,5 +33,19 @@ public class JsonResponse<E> {
 
 	public void setError(String error) {
 		this.error = error;
+	}
+	
+	public static JsonResponse success(Object result) {
+		JsonResponse response = new JsonResponse();
+		response.setStatus(JsonResponse.SUCCESS);
+		response.setResult(result);
+		return response;
+	}
+
+	public static JsonResponse error(String error) {
+		JsonResponse response = new JsonResponse();
+		response.setStatus(JsonResponse.ERROR);
+		response.setError(error);
+		return response;
 	}
 }
