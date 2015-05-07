@@ -50,6 +50,7 @@ public class OrdenadorRest {
 
 	/**
 	 * POST http://localhost:8080/persona/api/ordenador/.do
+	 * Header: Content-type: application/json
 	 * {
 	 * 	"nombre": "tres",
 	 * 	"serial": "123",
