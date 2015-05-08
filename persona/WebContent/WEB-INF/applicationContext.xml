@@ -10,5 +10,8 @@
 	<context:component-scan base-package="config"/>
 	<context:component-scan base-package="dao"/>
 	<context:component-scan base-package="service"/>
-	
+	<context:component-scan base-package="interceptor"/>
+
+	<import resource="beans.xml"/>
+	<import resource="aop.xml"/>
 </beans>
