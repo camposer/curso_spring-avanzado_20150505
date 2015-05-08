@@ -61,7 +61,7 @@
 					html += "<td>" + o.nombre + "</td>";
 					html += "<td>" + o.serial + "</td>";
 					html += "<td>" + nombreCompleto + "</td>";
-					html += "<td><a href='#'>mostrar</a></td>";
+					html += "<td><a href='#' onclick='mostrar(" + o.id + ")'>mostrar</a></td>";
 					html += "<td><a href='#' onclick='eliminar(" + o.id + ")'>eliminar</a></td>";
 					html += "</tr>";
 				}
@@ -70,6 +70,20 @@
 			});
 		};
 		
+		var mostrar = function(id) {
+			var url = BASE_URL + "/" + id + ".do";
+			$.ajax(url, {
+				type: 'get',
+				contentType: 'application/json'
+			}).done(function(respuesta) {
+				var o = respuesta.result;
+				$("#id").val(o.id);
+				$("#nombre").val(o.nombre);
+				$("#serial").val(o.serial);
+				$("#personaId").val(o.persona.id);
+			});
+		};
+
 		var eliminar = function(id) {
 			var url = BASE_URL + "/" + id + ".do";
 			$.ajax(url, {
@@ -79,7 +93,19 @@
 			});
 		};
 		
+		var limpiarForm = function() {
+			$("#id").val("");
+			$("#nombre").val("");
+			$("#serial").val("");
+			$("#personaId").val("");			
+		};
+		
 		var guardar = function() {
+			var callback = function(respuesta) {
+				limpiarForm();
+				imprimirTabla();
+			};
+			
 			var o = {
 				nombre: $("#nombre").val(),
 				serial: $("#serial").val(),
@@ -88,15 +114,24 @@
 				}
 			};
 			
-			var url = BASE_URL + ".do";
-			$.ajax(url, {
-				type: "post",
-				data: JSON.stringify(o),
-				contentType: "application/json",
-				dataType: "json"
-			}).done(function(respuesta) {
-				imprimirTabla();
-			});
+			if (!$("#id").val()) { // Agregar
+				var url = BASE_URL + ".do";
+				$.ajax(url, {
+					type: "post",
+					data: JSON.stringify(o),
+					contentType: "application/json",
+					dataType: "json"
+				}).done(callback);
+			} else { // Modificar
+				var url = BASE_URL + "/" + $("#id").val() + ".do";
+				o.id = $("#id").val();
+				$.ajax(url, {
+					type: "put",
+					data: JSON.stringify(o),
+					contentType: "application/json",
+					dataType: "json"
+				}).done(callback);				
+			}
 		};
 		
 		$(document).ready(function() {

@@ -40,6 +40,22 @@
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- OpenSessionInView ANTIPATRÓN!! -->
+	<filter>
+	    <filter-name>OpenEntityManagerInViewFilter</filter-name>
+	    <filter-class>
+	        org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+	    </filter-class>
+	    <init-param>
+	        <param-name>entityManagerFactoryBeanName</param-name>
+	        <param-value>entityManagerFactory</param-value>
+	    </init-param>
+	</filter>
+	<filter-mapping>
+	    <filter-name>OpenEntityManagerInViewFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
 	</welcome-file-list>

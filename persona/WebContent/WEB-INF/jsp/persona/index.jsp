@@ -18,8 +18,8 @@
 			text-align: center;
 		}
 		#tabla-persona td:nth-child(4),
-		#tabla-persona td:nth-child(5),
-		#tabla-persona td:nth-child(6) {
+		#tabla-persona td:nth-child(6),
+		#tabla-persona td:nth-child(7) {
 			text-align: center;
 		}
 		#tabla-persona a {
@@ -76,6 +76,7 @@
 			<th>Nombre</th>
 			<th>Apellido</th>
 			<th>Fecha de Nacimiento</th>
+			<th>Ordenadores</th>
 			<th>Mostrar</th>
 			<th>Eliminar</th>
 		</tr>
@@ -85,6 +86,11 @@
 				<td>${p.nombre}</td>
 				<td>${p.apellido}</td>
 				<td>${p.fechaNacimiento}</td>
+				<td>
+					<c:forEach var="o" items="${p.ordenadores}">
+						${o.nombre}<br>
+					</c:forEach>
+				</td>
 				<td><a href="${contextPath}/persona/mostrar.do?id=${p.id}">mostrar</a></td>
 				<td><a href="${contextPath}/persona/eliminar.do?id=${p.id}">eliminar</a></td>
 			</tr>	

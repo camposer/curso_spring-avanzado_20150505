@@ -12,6 +12,6 @@
 	<a href="persona/index.do">Persona</a><br>
 	<a href="ordenador/index.do">Ordenador</a><br>
 	<a href="ordenador.html">Ordenador (ajax)</a><br>
-	Para probar la API Rest la URL BASE = /api/ordenadores<br>
+	Para probar la API Rest la URL BASE = /api/ordenadores[/{id}].do<br>
 </body>
 </html>
