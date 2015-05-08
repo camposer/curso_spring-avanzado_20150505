@@ -17,6 +17,7 @@ import annotation.CustomLog;
 public class CustomLogAdvisor extends AbstractPointcutAdvisor {
 	private static final long serialVersionUID = 1L;
 	private final StaticMethodMatcherPointcut pointcut = new PointCut();
+	
 	@Autowired
 	private LoggerInterceptor interceptor;
 
