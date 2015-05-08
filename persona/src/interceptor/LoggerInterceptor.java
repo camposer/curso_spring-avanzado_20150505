@@ -26,7 +26,8 @@ public class LoggerInterceptor implements MethodInterceptor {
 	private void log(MethodInvocation methodInvocation) throws FileNotFoundException {
 		pw = new PrintWriter(new FileOutputStream(logNombreArchivo, true));
 
-		String traza = "[ método = " + methodInvocation.getMethod().getName();
+		String traza = "[ clase = " + methodInvocation.getThis().getClass() +   
+				", método = " + methodInvocation.getMethod().getName();
 
 		String argumentos = "( ";
 		for (Object a : methodInvocation.getArguments())
